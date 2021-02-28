@@ -1,0 +1,7 @@
+.list-wrapper{
+    display: flex;
+}
+.list-content{
+    max-width:300px;
+
+}
