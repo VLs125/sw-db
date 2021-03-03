@@ -1,3 +1,4 @@
+  
 import React from 'react';
 import SwapiService from '../../services/swapi-service'
 import Loader from '../loader/loader';
@@ -5,7 +6,7 @@ import './random-planet.css'
 export default class RandomPlanet extends React.Component {
   swapiService = new SwapiService();
   state  = {
-    planet:{},
+    planet:null,
     loading:true,
     error:false,
     togglePlanet:false
@@ -31,7 +32,6 @@ export default class RandomPlanet extends React.Component {
   }
 
   updatePlanet=()=>{
-    console.log("Updated")
     const id = Math.floor(Math.random()*17) + 2;
     this.swapiService
     .getPlanet(id)
@@ -47,6 +47,7 @@ export default class RandomPlanet extends React.Component {
       if(this.state.togglePlanet){
         this.updatePlanet()
       }
+
     }
 
 
@@ -91,4 +92,3 @@ const PlanetView = ({planet})=>{
   )
 
 }
-

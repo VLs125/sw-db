@@ -1,6 +1,7 @@
 .item-card-wrapper{
     margin-left: 2rem;
     max-width: 400px;
+    margin:0rem 2rem;
 }
 .img-card{
     max-width: 200px
