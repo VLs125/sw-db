@@ -1,4 +1,3 @@
-
 class SwapiService {
 
   async getResource(url) {
@@ -19,6 +18,9 @@ class SwapiService {
      const person = await this.getResource(`https://swapi.dev/api/people/${id}`)
       return this._transformPerson(person)
     }
+    getPersonImage(id){
+      return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
+    } 
   
 
    getAllPlanets = async()=> {
@@ -36,6 +38,9 @@ class SwapiService {
     }
 
   }
+  getPlanetImage(id){
+    return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`
+  } 
 
    getAllShips=async()=> {
     const allShips = await this.getResource(`https://swapi.dev/api/starships/`)
@@ -49,6 +54,9 @@ class SwapiService {
 
   }
 }
+getShipImage(id){
+  return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`
+} 
 
   _transformPlanet =(planet)=> {
     return {
@@ -62,7 +70,6 @@ class SwapiService {
   }
   _transformShips=(starship)=>{
     return{
-      isShips:true,
       id:this._getIdFromUrl(starship),
       name:starship.name,
       model:starship.model,
@@ -80,7 +87,6 @@ class SwapiService {
     
   _transformPerson=(person)=>{
     return{
-      isShips:false,
       id:this._getIdFromUrl(person),
       name:person.name,
       gender:person.gender,

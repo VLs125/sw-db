@@ -1,10 +1,15 @@
 import React,{Component} from 'react'
-import SwapiService from '../../services/swapi-service'
+import { Record } from '../details-card/details-card'
 import Error from '../error/error'
 import Header from '../header/header'
-import ItemList from '../item-list/item-list'
-import DetailsCard from '../person-details/details-card'
 import RandomPlanet from '../random-planet/random-planet'
+import { PersonList,
+    PlanetList,
+    StarshipList,
+    PersonDetails,
+    PlanetDetails,
+    StarshipDetails
+} from'../sw-component'
 import './app.css'
 
 //Drop error for chldren props : IN PROGRESS
@@ -25,24 +30,20 @@ class ErrorTemplate extends Component {
 
         }
         return this.props.children;
-    }
+    }s
 }
 
 
 export default class App extends Component{
-    swapiService = new SwapiService();
 
     state = {
         itemId:null,
-        isShips:true,
         hasError:false
     };
     
-    onItemSelected = (id,isShips)=>{
+    onItemSelected = (id)=>{
         this.setState({
             itemId:id,
-            isShips:isShips,
-
         })
     }
     onSelected = (toogle) =>{
@@ -52,7 +53,6 @@ export default class App extends Component{
     }
     render(){
 
-
     return(
         <div>
             <Header/>
@@ -61,21 +61,36 @@ export default class App extends Component{
             <RandomPlanet/>
             <div className="hero-wrapper">
 
-            <ItemList
-            renderItem= {({name,gender,birthYear})=>`${name} (${gender},${birthYear})`}
 
-            getData = {this.swapiService.getAllPeople}  
-            onItemSelected={this.onItemSelected}/>
-
-              <ItemList
+           <PersonList
            renderItem={(item)=>item.name}
-           getData={this.swapiService.getAllShips}
-           onItemSelected={this.onItemSelected}/>
+           onItemSelected={this.onItemSelected}>
+            </PersonList>
+
+            <StarshipList renderItem={(item)=>item.name}
+           onItemSelected={this.onItemSelected}>
+            </StarshipList>
+
+            <PlanetList renderItem={(item)=>item.name}
+           onItemSelected={this.onItemSelected}>
+            </PlanetList>
 
            <ErrorTemplate>
-           <DetailsCard
-           isShips={this.state.isShips}
-           selectedId={this.state.itemId}/>
+
+           <PersonDetails
+           selectedId={this.state.itemId}>
+            <Record field='name' label='Name'/>
+            <Record field='gender' label='Gender'/>
+            <Record field='eyeColor' label='Eye Color'/>
+            </PersonDetails>
+
+            <PlanetDetails
+           selectedId={this.state.itemId}>
+            <Record field='name' label='Name'/>
+            <Record field='gender' label='Gender'/>
+            <Record field='eyeColor' label='Eye Color'/>
+            </PlanetDetails>
+
            </ErrorTemplate>
 
            </div>
