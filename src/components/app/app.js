@@ -1,102 +1,108 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import { Record } from '../details-card/details-card'
 import Error from '../error/error'
 import Header from '../header/header'
 import RandomPlanet from '../random-planet/random-planet'
-import { PersonList,
+import { SwapiServiceConsumer, SwapiServiceProvider } from '../swapi-context'
+import {
+    PersonList,
     PlanetList,
     StarshipList,
     PersonDetails,
     PlanetDetails,
     StarshipDetails
-} from'../sw-component'
+} from '../sw-component'
 import './app.css'
+import SwapiService from '../../services/swapi-service'
+
 
 //Drop error for chldren props : IN PROGRESS
 class ErrorTemplate extends Component {
 
-    state= {
-        hasError:false
+    state = {
+        hasError: false
     }
 
-    componentDidCatch(){
+    componentDidCatch() {
         this.setState({
-            hasError:true
+            hasError: true
         })
     }
-    render(){
-        if(this.state.hasError){
-            return <Error/>
+    render() {
+        if (this.state.hasError) {
+            return <Error />
 
         }
         return this.props.children;
-    }s
+    } s
 }
 
 
-export default class App extends Component{
+export default class App extends Component {
+    swapiService = new SwapiService();
 
     state = {
-        itemId:null,
-        hasError:false
+        itemId: null,
+        hasError: false
     };
-    
-    onItemSelected = (id)=>{
+
+    onItemSelected = (id) => {
         this.setState({
-            itemId:id,
+            itemId: id,
         })
     }
-    onSelected = (toogle) =>{
+    onSelected = (toogle) => {
         this.setState({
-            tooglePlanet:toogle
+            tooglePlanet: toogle
         })
     }
-    render(){
-
-    return(
-        <div>
-            <Header/>
-            <div className="planet-wrapper">
-
-            <RandomPlanet/>
-            <div className="hero-wrapper">
+    render() {
 
 
-           <PersonList
-           renderItem={(item)=>item.name}
-           onItemSelected={this.onItemSelected}>
-            </PersonList>
+        return (
+            <SwapiServiceProvider value={this.swapiService}>
+                <div>
+                    <Header />
+                    <div className="planet-wrapper">
 
-            <StarshipList renderItem={(item)=>item.name}
-           onItemSelected={this.onItemSelected}>
-            </StarshipList>
+                        <RandomPlanet />
+                        <div className="hero-wrapper">
 
-            <PlanetList renderItem={(item)=>item.name}
-           onItemSelected={this.onItemSelected}>
-            </PlanetList>
 
-           <ErrorTemplate>
+                            <PersonList
+                                onItemSelected={this.onItemSelected}>
+                            </PersonList>
 
-           <PersonDetails
-           selectedId={this.state.itemId}>
-            <Record field='name' label='Name'/>
-            <Record field='gender' label='Gender'/>
-            <Record field='eyeColor' label='Eye Color'/>
-            </PersonDetails>
+                            {/* <StarshipList
+                                onItemSelected={this.onItemSelected}>
+                            </StarshipList>
 
-            <PlanetDetails
-           selectedId={this.state.itemId}>
-            <Record field='name' label='Name'/>
-            <Record field='gender' label='Gender'/>
-            <Record field='eyeColor' label='Eye Color'/>
-            </PlanetDetails>
+                            <PlanetList
+                                onItemSelected={this.onItemSelected}>
+                            </PlanetList> */}
 
-           </ErrorTemplate>
+                            <ErrorTemplate>
+                                <PersonDetails
+                                    selectedId={this.state.itemId}>
+                                    <Record field='name' label='Name' />
+                                    <Record field='gender' label='Gender' />
+                                    <Record field='eyeColor' label='Eye Color' />
+                                </PersonDetails>
+{/* 
+                                <PlanetDetails
+                                    selectedId={this.state.itemId}>
+                                    <Record field='name' label='Name' />
+                                    <Record field='gender' label='Gender' />
+                                    <Record field='eyeColor' label='Eye Color' />
+                                </PlanetDetails> */}
 
-           </div>
-        </div>
-        </div>
+                            </ErrorTemplate>
 
-    )
-}
+                        </div>
+                    </div>
+                </div>
+            </SwapiServiceProvider>
+
+        )
+    }
 }

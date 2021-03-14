@@ -22,7 +22,6 @@ class SwapiService {
       return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`
     } 
   
-
    getAllPlanets = async()=> {
     const allPlanets = await this.getResource(`https://swapi.dev/api/planets/`)
     return allPlanets.results.map(this._transformPlanet)

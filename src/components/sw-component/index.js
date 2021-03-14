@@ -15,6 +15,6 @@ export {
     PlanetList,
     StarshipList,
     PersonDetails,
-    PlanetDetails,
-    StarshipDetails
+    // PlanetDetails,
+    // StarshipDetails
 };

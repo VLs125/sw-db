@@ -1,26 +1,27 @@
 import React from 'react';
 import SwapiService from '../../services/swapi-service';
 import DetailsCard from '../details-card/details-card';
-import {withDataDetails} from '../hoc-helper'
+import { withDataDetails } from '../hoc-helper'
+import { withSwapiService } from '../hoc-helper'
 
- const swapiService = new SwapiService();
+const swapiService = new SwapiService();
+const {
+    getPerson,
+    getPlanet,
+    getShips,
+    getPersonImage,
+    getShipImage,
+    getPlanetImage
 
- const{
-     getPerson,
-     getPlanet,
-     getShips,
-     getPersonImage,
-     getShipImage,
-     getPlanetImage
+} = swapiService
 
- }=swapiService
- 
-const PersonDetails = withDataDetails(DetailsCard,getPerson,getPersonImage);
-const PlanetDetails = withDataDetails(DetailsCard,getPlanet,getPlanetImage);
-const StarshipDetails = withDataDetails(DetailsCard,getShips,getShipImage);
+const PersonDetails = withDataDetails(DetailsCard, getPerson, getPersonImage)
 
-export{
+// const PlanetDetails = withDataDetails(DetailsCard, getPlanet, getPlanetImage);
+// const StarshipDetails = withDataDetails(DetailsCard, getShips, getShipImage);
+
+export {
     PersonDetails,
-    PlanetDetails,
-    StarshipDetails
+    // PlanetDetails,
+    // StarshipDetails
 }

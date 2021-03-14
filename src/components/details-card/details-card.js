@@ -8,8 +8,8 @@ const Record = ({data,field,label})=>{
 export{Record} 
 
 const DetailsCard = (props) =>   {
-
   const {data} = props
+  
     return(
         <div className="card item-card-wrapper">
         <img className="card-img-top img-card" src={props.image}/>

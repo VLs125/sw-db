@@ -17,14 +17,18 @@ return(<Wrapped {...props}>
     </Wrapped>)
 }
 }
-const PersonList = withData(ItemList,getAllPeople);
-const PlanetList = withData(ItemList,getAllPlanets);
-const StarshipList = withData(ItemList,getAllShips);
+
+const renderName = ({name})=><span>{name}</span>;
+const renderModelAndName = ({model,name})=><span>{name}({model})</span>;
+
+
+const ListWithChildren = withChildFuction(ItemList, renderName);
+const PersonList = withData(ListWithChildren,getAllPeople);
+const PlanetList = withData(ListWithChildren,getAllPlanets);
+const StarshipList = withData(ListWithChildren,getAllShips);
 
 export{
-
     PersonList,
     PlanetList,
     StarshipList
-
 }

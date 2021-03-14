@@ -5,10 +5,10 @@ import './item-list.css'
 
  const ItemList = (props) => {
 
-  const {data, onItemSelected,renderItem}= props
+  const {data, onItemSelected}= props
   const items = data.map((item) => {
     const {id} = item;
-   const label = renderItem(item);
+    const label = item.name
      return (
        <li key={id}
        onClick={() => onItemSelected(id)} 
