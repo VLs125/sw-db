@@ -4,6 +4,7 @@ import Error from '../error/error'
 import Header from '../header/header'
 import RandomPlanet from '../random-planet/random-planet'
 import { SwapiServiceConsumer, SwapiServiceProvider } from '../swapi-context'
+import {BrowserRouter as Router} from 'react-router-dom';
 import {
     PersonList,
     PlanetList,
@@ -61,6 +62,7 @@ export default class App extends Component {
 
         return (
             <SwapiServiceProvider value={this.swapiService}>
+                <Router>
                 <div>
                     <Header />
                     <div className="planet-wrapper">
@@ -72,6 +74,7 @@ export default class App extends Component {
                             <PersonList
                                 onItemSelected={this.onItemSelected}>
                             </PersonList>
+                            <Router path='/people' component={PersonDetails}/>
 
                             {/* <StarshipList
                                 onItemSelected={this.onItemSelected}>
@@ -101,6 +104,7 @@ export default class App extends Component {
                         </div>
                     </div>
                 </div>
+                </Router>
             </SwapiServiceProvider>
 
         )
