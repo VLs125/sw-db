@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import { Record } from '../details-card/details-card';
-import { PlanetDetails, PlanetList } from '../sw-component';
+import { StarshipDetails, StarshipList } from '../sw-component';
 
-const PlanetDetailsWrapper = () => {
+const StarshipDetailsWrapper = () => {
 
     const [itemID, setItemId] = useState(null)
     const [hasError, setHasError] = useState(false)
@@ -13,18 +13,18 @@ const PlanetDetailsWrapper = () => {
     }
     return (
         <React.Fragment>
-        <PlanetList
+        <StarshipList
             onItemSelected={onItemSelected}>
-        </PlanetList>
-        <PlanetDetails
+        </StarshipList>
+        <StarshipDetails
         selectedId={itemID}>
         <Record field='name' label='Name' />
-        <Record field='population' label='Population' />
-        <Record field='diameter' label='Diameter' />
-    </PlanetDetails>
+        <Record field='model' label='Model' />
+        <Record field='length' label='Length' />
+    </StarshipDetails>
     </React.Fragment>
     )
 
 }
 
-export default PlanetDetailsWrapper
+export default StarshipDetailsWrapper

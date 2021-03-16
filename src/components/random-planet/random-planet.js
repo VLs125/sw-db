@@ -1,4 +1,3 @@
-  
 import React from 'react';
 import SwapiService from '../../services/swapi-service'
 import Loader from '../loader/loader';

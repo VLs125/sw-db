@@ -1,10 +1,13 @@
+import Error from "../components/error/error";
+
 class SwapiService {
 
   async getResource(url) {
     const res = await fetch(url);
 
     if (!res.ok) {
-      throw new Error(url)
+      throw new Error(url) 
+          
     }
     return await res.json();
 
@@ -14,7 +17,7 @@ class SwapiService {
     return allPeople.results.map(this._transformPerson);
 
   }
-   getPerson = async (id)=> {
+   getPerson = async (id )=> {
      const person = await this.getResource(`https://swapi.dev/api/people/${id}`)
       return this._transformPerson(person)
     }

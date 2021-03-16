@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component ,useState } from 'react'
 import { Record } from '../details-card/details-card'
 import Error from '../error/error'
 import Header from '../header/header'
 import RandomPlanet from '../random-planet/random-planet'
 import { SwapiServiceConsumer, SwapiServiceProvider } from '../swapi-context'
-import {BrowserRouter as Router} from 'react-router-dom';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 import {
     PersonList,
     PlanetList,
@@ -12,9 +12,13 @@ import {
     PersonDetails,
     PlanetDetails,
     StarshipDetails
-} from '../sw-component'
+} from '../sw-component/index'
+
 import './app.css'
 import SwapiService from '../../services/swapi-service'
+import PersonDetailsWrapper from '../person-details/person-details'
+import PlanetDetailsWrapper from '../planet-details/planet-details'
+import StarshipDetailsWrapper from '../starship-details/starship-details'
 
 
 //Drop error for chldren props : IN PROGRESS
@@ -39,29 +43,11 @@ class ErrorTemplate extends Component {
 }
 
 
-export default class App extends Component {
-    swapiService = new SwapiService();
-
-    state = {
-        itemId: null,
-        hasError: false
-    };
-
-    onItemSelected = (id) => {
-        this.setState({
-            itemId: id,
-        })
-    }
-    onSelected = (toogle) => {
-        this.setState({
-            tooglePlanet: toogle
-        })
-    }
-    render() {
-
+ const App = () => {
+   const swapiService = new SwapiService();
 
         return (
-            <SwapiServiceProvider value={this.swapiService}>
+            <SwapiServiceProvider value={swapiService}>
                 <Router>
                 <div>
                     <Header />
@@ -71,34 +57,10 @@ export default class App extends Component {
                         <div className="hero-wrapper">
 
 
-                            <PersonList
-                                onItemSelected={this.onItemSelected}>
-                            </PersonList>
-                            <Router path='/people' component={PersonDetails}/>
-
-                            {/* <StarshipList
-                                onItemSelected={this.onItemSelected}>
-                            </StarshipList>
-
-                            <PlanetList
-                                onItemSelected={this.onItemSelected}>
-                            </PlanetList> */}
-
-                            <ErrorTemplate>
-                                <PersonDetails
-                                    selectedId={this.state.itemId}>
-                                    <Record field='name' label='Name' />
-                                    <Record field='gender' label='Gender' />
-                                    <Record field='eyeColor' label='Eye Color' />
-                                </PersonDetails>
-{/* 
-                                <PlanetDetails
-                                    selectedId={this.state.itemId}>
-                                    <Record field='name' label='Name' />
-                                    <Record field='gender' label='Gender' />
-                                    <Record field='eyeColor' label='Eye Color' />
-                                </PlanetDetails> */}
-
+                        <ErrorTemplate>
+                            <Route path='/people' component={PersonDetailsWrapper}/>
+                            <Route path='/starship' component={StarshipDetailsWrapper}/>
+                            <Route path='/planet' component={PlanetDetailsWrapper}/>
                             </ErrorTemplate>
 
                         </div>
@@ -109,4 +71,5 @@ export default class App extends Component {
 
         )
     }
-}
+
+    export default App
