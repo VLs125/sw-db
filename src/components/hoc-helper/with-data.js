@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import Loader from '../loader/loader';
-const withData =(View, getData)=>{
+const WithDataList =(View, getData)=>{
   
     return class extends Component{
      
@@ -27,4 +27,4 @@ const withData =(View, getData)=>{
   }
   
 
-  export default withData;
+  export default WithDataList;

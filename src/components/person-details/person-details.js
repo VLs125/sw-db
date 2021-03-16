@@ -16,13 +16,12 @@ const PersonDetailsWrapper = () => {
             <PersonList
                 onItemSelected={onItemSelected}>
             </PersonList>
+            
             <PersonDetails
                 selectedId={itemID}>
-
                 <Record field='name' label='Name' />
                 <Record field='gender' label='Gender' />
                 <Record field='eyeColor' label='Eye Color' />
-
             </PersonDetails>
 
         </React.Fragment>

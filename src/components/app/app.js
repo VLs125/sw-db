@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import Error from '../error/error'
 import Header from '../header/header'
 import RandomPlanet from '../random-planet/random-planet'
@@ -8,7 +8,7 @@ import SwapiService from '../../services/swapi-service'
 import PersonDetailsWrapper from '../person-details/person-details'
 import PlanetDetailsWrapper from '../planet-details/planet-details'
 import StarshipDetailsWrapper from '../starship-details/starship-details'
-import Context from '../swapi-context/swapi-service-context';
+import Context from '../swapi-context/context';
 
 
 //Drop error for chldren props : IN PROGRESS

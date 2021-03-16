@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Record } from '../details-card/details-card';
 import { PlanetDetails, PlanetList } from '../sw-component';
 
@@ -13,16 +13,18 @@ const PlanetDetailsWrapper = () => {
     }
     return (
         <React.Fragment>
-        <PlanetList
-            onItemSelected={onItemSelected}>
-        </PlanetList>
-        <PlanetDetails
-        selectedId={itemID}>
-        <Record field='name' label='Name' />
-        <Record field='population' label='Population' />
-        <Record field='diameter' label='Diameter' />
-    </PlanetDetails>
-    </React.Fragment>
+            <PlanetList
+                onItemSelected={onItemSelected}>
+            </PlanetList>
+
+            <PlanetDetails
+                selectedId={itemID}>
+                <Record field='name' label='Name' />
+                <Record field='population' label='Population' />
+                <Record field='diameter' label='Diameter' />
+            </PlanetDetails>
+
+        </React.Fragment>
     )
 
 }

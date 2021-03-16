@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import SwapiService from '../../services/swapi-service';
 import DetailsCard from '../details-card/details-card';
-import { withDataDetails } from '../hoc-helper'
-
+import { WithDataDetails } from '../hoc-helper'
+import Context from '../swapi-context/context';
 const swapiService = new SwapiService();
 const {
     getPerson,
@@ -14,9 +14,9 @@ const {
 
 } = swapiService
 
-const PersonDetails =  withDataDetails(DetailsCard, getPerson, getPersonImage)
-const PlanetDetails = withDataDetails(DetailsCard, getPlanet, getPlanetImage);
-const StarshipDetails = withDataDetails(DetailsCard, getShips, getShipImage);
+const PersonDetails =  WithDataDetails(DetailsCard,getPerson,getPersonImage)
+const PlanetDetails = WithDataDetails(DetailsCard,getPlanet,getPlanetImage);
+const StarshipDetails = WithDataDetails(DetailsCard,getShips,getShipImage);
 
 export {
     PersonDetails,
