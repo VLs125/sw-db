@@ -31,13 +31,10 @@ class SwapiService {
 
   }
    getPlanet=async(id)=> {
-    if (Number.isInteger(id)) {
+   
       const planet = await this.getResource(`https://swapi.dev/api/planets/${id}`)
       return this._transformPlanet(planet)
-    }
-    else {
-      return `id ${id} not a number`
-    }
+
 
   }
   getPlanetImage(id){

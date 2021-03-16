@@ -14,8 +14,7 @@ const {
 
 } = swapiService
 
-const PersonDetails = withDataDetails(DetailsCard, getPerson, getPersonImage)
-
+const PersonDetails =  withDataDetails(DetailsCard, getPerson, getPersonImage)
 const PlanetDetails = withDataDetails(DetailsCard, getPlanet, getPlanetImage);
 const StarshipDetails = withDataDetails(DetailsCard, getShips, getShipImage);
 

@@ -11,6 +11,7 @@ const withDataDetails =(View, getData,getImage)=>{
         loading:false,
         image:''
       }
+
       getId(){
         const {selectedId} = this.props
         return selectedId

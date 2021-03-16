@@ -1,4 +1,4 @@
-import React, { Fragment,useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Record } from '../details-card/details-card';
 import { PersonDetails, PersonList } from '../sw-component';
 
@@ -18,9 +18,11 @@ const PersonDetailsWrapper = () => {
             </PersonList>
             <PersonDetails
                 selectedId={itemID}>
+
                 <Record field='name' label='Name' />
                 <Record field='gender' label='Gender' />
                 <Record field='eyeColor' label='Eye Color' />
+
             </PersonDetails>
 
         </React.Fragment>
